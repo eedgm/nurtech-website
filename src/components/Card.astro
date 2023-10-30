@@ -1,0 +1,31 @@
+---
+import { Icon } from 'astro-icon'
+import ModalInfo from '../components/ModalInfo.astro';
+
+interface Props {
+	title: string;
+    excerpt: string;
+    icon: string;
+    color: string;
+    modal_title: string;
+}
+
+const { title, excerpt, icon, color, modal_title } = Astro.props;
+---
+
+<div class="relative mt-6 flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+    <div class="p-6">
+        <Icon size={64} name={icon} class:list={[ 'mb-4', [ color ] ]} />
+        <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+            {title}
+        </h5>
+        <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
+            {excerpt}
+        </p>
+    </div>
+    <div class="p-6 pt-0">
+        <ModalInfo title={modal_title} button="Ver más" modal_button_color={color}>
+            <slot name="modal_content" />
+        </ModalInfo>
+    </div>
+</div>

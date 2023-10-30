@@ -1,0 +1,55 @@
+---
+import Hero from '../components/Hero.astro';
+import ButtonContact from '../components/ButtonContact.astro';
+
+---
+
+<section class="bg-white">
+    <nav class="container p-6 mx-auto lg:flex lg:justify-between lg:items-center">
+        <div class="flex items-center justify-between">
+            <div>
+                <a class="text-2xl font-bold text-gray-800 lg:text-3xl hover:text-gray-700" href="#">
+                    <img class="h-14 w-auto" src="logo-nurtech.png" alt="" />
+                </a>
+            </div>
+
+            <!-- Mobile menu button
+            <div class="flex lg:hidden">
+                <button type="button" id="menu"
+                    class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
+                    aria-label="toggle menu">
+                    <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+                        <path fill-rule="evenodd"
+                            d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z">
+                        </path>
+                    </svg>
+                </button>
+            </div> -->
+        </div>
+
+        <!-- Mobile Menu open: "block", Menu closed: "hidden"
+        <div class="navmenu-toggle hidden lg:flex lg:justify-between lg:items-center">
+            <div class="flex flex-col mt-4 space-y-2 lg:-mx-6 lg:mt-0 lg:flex-row lg:space-y-0">
+                <a class="text-gray-700 lg:px-6 hover:text-blue-500"
+                    href="#">Home</a>
+                <a class="text-gray-700 lg:px-6 hover:text-blue-500"
+                    href="#">Contact</a>
+                <a class="text-gray-700 lg:px-6 hover:text-blue-500"
+                href="#">FAQ</a>
+            </div>
+        </div> -->
+
+        <ButtonContact />
+    </nav>
+
+    <Hero />
+</section>
+
+<!-- <script is:inline>
+    const menuButton = document.getElementById("menu");
+    menuButton.addEventListener("click", () => {
+        [...document.querySelectorAll(".navmenu-toggle")].forEach((Element) => {
+            Element.classList.toggle("hidden");
+        });
+    });
+</script> -->

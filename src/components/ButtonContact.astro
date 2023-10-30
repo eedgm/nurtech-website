@@ -1,0 +1,9 @@
+---
+import ModalContact from '../components/ModalContact.astro';
+---
+
+<div class="lg:flex lg:justify-between lg:items-center">
+    <ModalContact title="Contacto" button="Contáctanos" button_class="w-full px-5 py-2 mt-4 text-lg text-center text-white capitalize transition-colors duration-200 bg-blue-600 transform border rounded-md lg:mt-0 hover:bg-blue-800">
+        <slot name="modal_content" />
+    </ModalContact>
+</div>

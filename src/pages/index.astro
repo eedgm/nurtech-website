@@ -1,0 +1,49 @@
+---
+import Card from '../components/Card.astro';
+import Section from '../components/Section.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Nurtech">
+	<Section 
+		bg="bg-gradient-to-b from-cyan-50 to-cyan-200" 
+		title="Nuestros Servicios" 
+		description="Ofrecemos servicios a la medida de su necesidad" 
+	>
+		<Card 
+			title="Consultoría"
+			excerpt="Contamos con mas de 10 años de experiencia brindando consultoria y soluciones adecuadas para nuestros clientes." 
+			icon="fontisto:persons"
+			color="text-pink-500"
+			modal_title="Consultoría"
+		>
+			<p slot="modal_content">Contamos con mas de 10 años de experiencia brindando consultoria y soluciones adecuadas para nuestros clientes.</p>
+		</Card>
+		<Card 
+			title="Desarrollo a Medida"
+			excerpt="Desarrollamos sistemas acorde con sus necesidades para potenciar sus ventas y funcionamiento." 
+			icon="grommet-icons:system"
+			color="text-red-500"
+			modal_title="Desarrollo a Medida"
+		>
+			<p slot="modal_content">Desarrollamos sistemas acorde con sus necesidades para potenciar sus ventas y funcionamiento.</p>
+		</Card>
+		<Card 
+			title="Soporte Técnico"
+			excerpt="Apoyamos con el servicio técnico para sus sistemas, servidores, ataques, correos electrónicos y démas." 
+			icon="mdi:help-outline"
+			color="text-yellow-500"
+			modal_title="Soporte Técnico"
+		>
+			<p slot="modal_content">Apoyamos con el servicio técnico para sus sistemas, servidores, ataques, correos electrónicos y démas.</p>
+		</Card>
+	</Section>
+
+	<!-- <Section 
+		bg="bg-red-100" 
+		title="Tailus blocks leadership2" 
+		description="Tailus prides itself not only on award-winning technology, but also on the talent of its people of some of the brightest minds and most experienced executives in business." 
+	>
+		<Card />
+	</Section> -->
+</Layout>

@@ -13,7 +13,7 @@ interface Props {
 const { title, excerpt, icon, color, modal_title } = Astro.props;
 ---
 
-<div class="relative mt-6 flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+<div class="relative mt-6 flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
     <div class="p-6">
         <Icon size={64} name={icon} class:list={[ 'mb-4', [ color ] ]} />
         <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">

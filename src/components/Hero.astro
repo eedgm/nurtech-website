@@ -1,5 +1,6 @@
 ---
 import ButtonContact from '../components/ButtonContact.astro';
+import LottieAnimation from "astro-integration-lottie/Lottie.astro";
 ---
 
 <div class="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
@@ -42,6 +43,8 @@ import ButtonContact from '../components/ButtonContact.astro';
     </div>
 
     <div class="flex items-center justify-center w-full lg:w-1/2">
-        <img class="w-full h-full mx-auto rounded-md lg:max-w-2xl" src="45215.svg" alt="glasses photo">
+        <div class="container w-[500px]">
+            <LottieAnimation src="hero-nurtech.json" autoplay="visible" />
+        </div>
     </div>
 </div>

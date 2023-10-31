@@ -1,11 +1,48 @@
 ---
 if (Astro.request.method === "POST") {
   try {
+    const api_key = import.meta.env.API_KEY;
+    const api_url = import.meta.env.API_URL;
     const data = await Astro.request.formData();
-    const name = data.get("username");
-    const email = data.get("email");
-    const password = data.get("password");
-    console.log(name, email, password)
+    const name = data.get("name");
+    const email = data.get("from");
+    const phone = data.get("phone");
+    const message = data.get("message");    
+
+    // fetch(`${api_url}/api/mail`, {
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Authorization': `Bearer ${api_key}`
+		// 		},
+		// 		body: formdata
+		// 	})
+		// 	.then(response => Promise.all([response, response.json()]))
+		// 	.then(([response, json]) => {
+		// 		// console.log('response', response);
+		// 		if (!response.ok) { // We should get a 201 (Created) status code if everything is fine/working
+		// 			throw Error(`Respsonse status ${response.status} (${response.statusText}): ${json.message}`);
+		// 		}
+		// 		console.log('a '+json);
+		// 		// Whatever you want to do next after the POST request - maybe dispatch something?
+		// 	})
+		// 	.catch(error => console.log('error', error));
+
+      const response = await fetch(`${api_url}/api/mail`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${api_key}`
+        },
+        body: JSON.stringify({
+          name: name,
+          from: email,
+          body: message,
+          phone: phone,
+          to: 'edilbert@gmail.com',
+          subject: 'Contacto'
+        }),
+      });
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -14,19 +51,26 @@ if (Astro.request.method === "POST") {
 }
 ---
 
-<h1>Register</h1>
 <form method="POST">
-  <label>
-    Username:
-    <input type="text" name="username" required />
-  </label>
-  <label>
-    Email:
-    <input type="email" name="email" required />
-  </label>
-  <label>
-    Password:
-    <input type="password" name="password" required minlength="6" />
-  </label>
-  <button>Submit</button>
+  <div class="mt-5 mb-6">
+    <label for="name" class="block mb-2 text-sm text-gray-600">Nombre Completo</label>
+    <input type="text" name="name" id="name" placeholder="John Doe" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 " />
+  </div>
+  <div class="mb-6">
+      <label for="from" class="block mb-2 text-sm text-gray-600">from</label>
+      <input type="email" name="from" id="from" placeholder="you@company.com" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 " />
+  </div>
+  <div class="mb-6">
+
+      <label for="phone" class="text-sm text-gray-600">Número de teléfono</label>
+      <input type="text" name="phone" id="phone" placeholder="+1 (555) 1234-567" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 " />
+  </div>
+  <div class="mb-6">
+      <label for="message" class="block mb-2 text-sm text-gray-600">Su mensaje</label>
+
+      <textarea rows="5" name="message" id="message" placeholder="Your Message" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 " required></textarea>
+  </div>
+  <div class="mb-6">
+      <button type="submit" class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Send Message</button>
+  </div>
 </form>

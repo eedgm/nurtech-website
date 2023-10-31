@@ -1,15 +1,19 @@
-import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
 
 const MyForm = () => {
-  const { control, handleSubmit, formState: { errors } } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={() => handleSubmit(onSubmit)()}>
       <div>
         <label>Name</label>
         <Controller

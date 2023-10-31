@@ -38,4 +38,67 @@ import Layout from '../layouts/Layout.astro';
 			<p slot="modal_content">Apoyamos con el servicio técnico para sus sistemas, servidores, ataques, correos electrónicos y démas.</p>
 		</Card>
 	</Section>
+	
+	<script is:inline>
+		const form = document.querySelector(".form");
+		const result = document.querySelector(".result");
+		// const baseUrl = import.meta.env.PUBLIC_API_URL
+		// console.log(process.env.API_KEY)
+	
+		form.addEventListener("submit", function (e) {
+			const formdata = new FormData(form);
+			
+			e.preventDefault();
+
+			formdata.append("subject", "Contacto");
+			formdata.append("to", "edilberto.degr@gmail.com");
+			var object = {};
+			formdata.forEach((value, key) => {
+				object[key] = value;
+			});
+			var json = JSON.stringify(object);
+			console.log(json);
+			result.innerHTML = "Please wait...";
+	
+			// var myHeaders = new Headers();
+			// myHeaders.append("Authorization", "Bearer "+import.meta.env.api_key);
+
+			// var requestOptions = {
+			// 	method: 'POST',
+			// 	headers: myHeaders,
+			// 	body: formdata,
+			// 	redirect: 'follow'
+			// };
+
+			fetch(`http://127.0.0.1:8000/api/mail`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer b9ayCQCidWpGNkePukiVUw3aHdS6BPWcgukkVnbwbd57b1e2`
+				},
+				body: json
+			})
+			.then(response => Promise.all([response, response.json()]))
+			.then(([response, json]) => {
+				// console.log('response', response);
+				if (!response.ok || !response.status === 201) { // We should get a 201 (Created) status code if everything is fine/working
+					throw Error(`Respsonse status ${response.status} (${response.statusText}): ${json.message}`);
+				}
+				console.log(json);
+				// Whatever you want to do next after the POST request - maybe dispatch something?
+			})
+			.catch(exception => {
+				console.log(new Map([
+					[TypeError, "There was a problem fetching the response."],
+					[SyntaxError, "There was a problem parsing the response."],
+					[Error, exception.message]
+				]).get(exception.constructor()));
+			});
+
+			// fetch("http://127.0.0.1:8000/api/mail", requestOptions)
+			// 	.then(response => response.text())
+			// 	.then(result => console.log(result))
+			// 	.catch(error => console.log('error', error));
+		});
+	</script>
 </Layout>
